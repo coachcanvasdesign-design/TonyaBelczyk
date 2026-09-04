@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Tonya — Tonya Belczyk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,300;1,600&family=Lato:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal:    { DEFAULT: '#748388', dark: '#5C6D72' },
+            sage:    '#A8BFB5',
+            ivory:   { DEFAULT: '#F4EDE4', dark: '#EAE0D4' },
+            sand:    { DEFAULT: '#C8B49A', light: '#E5D9CB' },
+            charcoal:{ DEFAULT: '#393331', mid: '#6A6360' },
+          },
+          fontFamily: {
+            serif: ['"Poppins"', 'system-ui', 'sans-serif'],
+            sans:  ['"Lato"', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', system-ui, sans-serif;
+      font-weight: 300;
+      color: #393331;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* suppress default details marker */
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+
+    /* nav shadow on scroll */
+    #main-nav { transition: box-shadow 0.3s ease; }
+    #main-nav.scrolled { box-shadow: 0 1px 0 rgba(57,51,49,0.1); }
+
+    /* glow button */
+    .btn-glow { transition: background-color 0.2s ease, box-shadow 0.25s ease; }
+    .btn-glow:hover { box-shadow: 0 0 14px rgba(116,131,136,0.6), 0 0 28px rgba(116,131,136,0.25); }
+
+    /* ── HERO ────────────────────────────────────────────────────── */
+    .hero-section {
+      position: relative;
+      overflow: hidden;
+      min-height: 90vh;
+      background: #F7F4EF;
+      display: flex;
+      align-items: center;
+    }
+    @media (max-width: 767px) {
+      .hero-section { min-height: 100svh; }
+      .hero-text    { padding: 100px 6% 60px; max-width: 100%; }
+      .hero-text > div { max-width: 56vw; }
+      .hero-photo { width: 70%; }
+    }
+
+    /* ── SCROLL REVEAL ───────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── CREDENTIAL CARD ─────────────────────────────────────────── */
+    .cred-card {
+      background: #fff;
+      border: 1px solid rgba(200,180,154,0.25);
+      border-radius: 14px;
+      padding: 22px 22px 22px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      box-shadow: 0 2px 14px rgba(57,51,49,0.05), 0 1px 3px rgba(57,51,49,0.04);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .cred-card:hover {
+      box-shadow: 0 6px 28px rgba(57,51,49,0.1), 0 1px 3px rgba(57,51,49,0.05);
+      transform: translateY(-2px);
+    }
+    .cred-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: #F4EDE4;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── INTEREST PILLS ──────────────────────────────────────────── */
+    .interest-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 22px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(116,131,136,0.2);
+      border-radius: 999px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      color: #393331;
+      cursor: default;
+    }
+    .pill-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #748388;
+      flex-shrink: 0;
+    }
+
+    /* ── CTA SECTION ─────────────────────────────────────────────── */
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #F4EDE4;
+      color: #393331;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 18px 40px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .cta-btn:hover {
+      background: #fff;
+      transform: translateY(-1px);
+    }
+    .cta-btn:active { transform: scale(0.97); }
+
+    /* ── BIO WHITE BOX ───────────────────────────────────────────── */
+    .bio-box {
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(200,180,154,0.22);
+      border-radius: 18px;
+      padding: 52px 52px;
+      box-shadow:
+        0 4px 32px rgba(57,51,49,0.06),
+        0 1px 4px rgba(57,51,49,0.03);
+    }
+    @media (max-width: 767px) {
+      .bio-box { padding: 32px 24px; }
+    }
+
+    /* ── INTEREST SECTION BG ─────────────────────────────────────── */
+    .interest-section {
+      background: #EAE0D4;
+      position: relative;
+      overflow: hidden;
+    }
+    .interest-section::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168,191,181,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .interest-section::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,180,154,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── TESTIMONIAL MARQUEE ─────────────────────────────────────── */
+    .tm-outer {
+      overflow: hidden;
+      position: relative;
+      /* fade edges */
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+    .tm-track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      /* RIGHT-moving: starts at -50%, scrolls toward 0 */
+      animation: tm-scroll-right 55s linear infinite;
+    }
+    .tm-outer:hover .tm-track { animation-play-state: paused; }
+    @keyframes tm-scroll-right {
+      from { transform: translateX(-50%); }
+      to   { transform: translateX(0); }
+    }
+
+    /* Testimonial card */
+    .tm-card {
+      width: 300px;
+      flex-shrink: 0;
+      background: #fff;
+      border: 1px solid rgba(200,180,154,0.28);
+      border-radius: 18px;
+      padding: 28px 26px 22px;
+      box-shadow: 0 4px 20px rgba(57,51,49,0.06), 0 1px 4px rgba(57,51,49,0.04);
+      cursor: pointer;
+      transition: box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .tm-card:hover {
+      box-shadow: 0 10px 36px rgba(57,51,49,0.13), 0 2px 6px rgba(57,51,49,0.06);
+      transform: translateY(-4px) scale(1.01);
+    }
+    .tm-stars { color: #c8922a; font-size: 13px; letter-spacing: 2px; margin-bottom: 14px; }
+    .tm-quote {
+      font-family: 'Lato', sans-serif; font-weight: 300;
+      font-size: 14px; line-height: 1.75; color: rgba(57,51,49,0.75);
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      margin-bottom: 18px;
+    }
+    .tm-read-hint {
+      font-family: 'Lato', sans-serif; font-weight: 400;
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #748388;
+      display: flex; align-items: center; gap: 5px;
+      margin-bottom: 16px;
+    }
+    .tm-divider { border: none; border-top: 1px solid rgba(200,180,154,0.3); margin-bottom: 16px; }
+    .tm-name {
+      font-family: 'Poppins', sans-serif; font-weight: 600;
+      font-size: 13px; color: #393331; line-height: 1.3;
+    }
+    .tm-role {
+      font-family: 'Lato', sans-serif; font-weight: 300;
+      font-size: 12px; color: rgba(57,51,49,0.5); margin-top: 2px;
+    }
+
+    /* ── TESTIMONIAL MODAL ───────────────────────────────────────── */
+    #tm-modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      opacity: 0; pointer-events: none;
+      transition: opacity 350ms ease;
+      z-index: 950;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    #tm-modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    #tm-modal {
+      background: #F7F4EF;
+      border-radius: 24px;
+      padding: 52px 48px 44px;
+      max-width: 540px;
+      width: 100%;
+      max-height: 82vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(16px) scale(0.97);
+      transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1), opacity 350ms ease;
+      opacity: 0;
+      box-shadow: 0 24px 80px rgba(57,51,49,0.2), 0 4px 16px rgba(57,51,49,0.1);
+    }
+    #tm-modal-overlay.open #tm-modal { transform: none; opacity: 1; }
+
+    #tm-modal-close {
+      position: absolute; top: 18px; right: 20px;
+      background: none; border: none; font-size: 24px;
+      color: rgba(57,51,49,0.4); cursor: pointer;
+      line-height: 1; padding: 4px 8px;
+      transition: color 200ms ease;
+    }
+    #tm-modal-close:hover { color: #748388; }
+
+    #tm-modal-stars { color: #c8922a; font-size: 15px; letter-spacing: 2px; margin-bottom: 22px; }
+    #tm-modal-quote {
+      font-family: 'Lato', sans-serif; font-weight: 300;
+      font-size: 16px; line-height: 1.85; color: rgba(57,51,49,0.75);
+      margin-bottom: 28px; font-style: italic;
+      white-space: pre-line;
+    }
+    #tm-modal-divider { border: none; border-top: 1px solid rgba(200,180,154,0.35); margin-bottom: 22px; }
+    #tm-modal-name {
+      font-family: 'Poppins', sans-serif; font-weight: 600;
+      font-size: 15px; color: #393331;
+    }
+    #tm-modal-role {
+      font-family: 'Lato', sans-serif; font-weight: 300;
+      font-size: 13px; color: rgba(57,51,49,0.5); margin-top: 3px;
+    }
+
+    @media (max-width: 600px) {
+      #tm-modal { padding: 40px 28px 36px; }
+    }
+
+    /* social dock */
+    .dock-icon {
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+    .dock-icon:hover { box-shadow: 0 6px 20px rgba(116,131,136,0.45); }
+
+    /* ── CONNECT DRAWER ──────────────────────────────────────────── */
+    #drawer-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.40);
+      opacity: 0; pointer-events: none;
+      transition: opacity 400ms ease-out;
+      z-index: 900;
+    }
+    #drawer-overlay.drawer-open { opacity: 1; pointer-events: all; }
+
+    #connect-drawer {
+      position: fixed; top: 0; right: 0;
+      width: 480px; height: 100%;
+      background: #F7F4EF;
+      box-shadow: -8px 0 40px rgba(57,51,49,0.18);
+      transform: translateX(100%);
+      transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 901; overflow-y: auto;
+      padding: 48px; box-sizing: border-box;
+    }
+    #connect-drawer.drawer-open { transform: translateX(0); }
+
+    @media (max-width: 767px) {
+      #connect-drawer {
+        top: auto; bottom: 0; left: 0; right: 0;
+        width: 100%; height: auto; max-height: 92vh;
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 -8px 40px rgba(57,51,49,0.18);
+        transform: translateY(100%);
+        padding: 32px;
+      }
+      #connect-drawer.drawer-open { transform: translateY(0); }
+    }
+
+    #drawer-close {
+      position: absolute; top: 20px; right: 20px;
+      background: none; border: none; font-size: 24px;
+      color: #4A4A4A; cursor: pointer; line-height: 1;
+      padding: 4px 8px;
+      transition: color 200ms ease;
+    }
+    #drawer-close:hover { color: #92B0A8; }
+
+    #drawer-label {
+      font-family: 'Lato', sans-serif; font-weight: 400;
+      font-size: 10px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: #92B0A8; margin-bottom: 12px;
+    }
+    #drawer-heading {
+      font-family: 'Poppins', sans-serif; font-weight: 600;
+      font-size: clamp(22px, 2vw, 28px); color: #4A4A4A;
+      line-height: 1.2; margin-bottom: 14px;
+    }
+    #drawer-intro {
+      font-family: 'Lato', sans-serif; font-weight: 400;
+      font-size: 15px; color: #4A4A4A; line-height: 1.75; margin-bottom: 20px;
+    }
+    #drawer-rule { border: none; border-top: 1px solid #92B0A8; margin-bottom: 28px; }
+
+    .drawer-field { margin-bottom: 20px; }
+    .drawer-field label {
+      display: block; font-family: 'Lato', sans-serif; font-weight: 400;
+      font-size: 13px; color: #4A4A4A; margin-bottom: 6px;
+    }
+    .drawer-field input, .drawer-field textarea {
+      width: 100%; background: #F7F4EF;
+      border: 1px solid #DCCFC0; border-radius: 8px;
+      padding: 12px 14px; font-family: 'Lato', sans-serif; font-weight: 400;
+      font-size: 14px; color: #4A4A4A; box-sizing: border-box; outline: none;
+      transition: border-color 200ms ease, box-shadow 200ms ease;
+    }
+    .drawer-field input::placeholder, .drawer-field textarea::placeholder { color: #B0A89A; }
+    .drawer-field input:focus, .drawer-field textarea:focus {
+      border-color: #92B0A8;
+      box-shadow: 0 0 0 3px rgba(127,184,178,0.18);
+    }
+    .drawer-field textarea { min-height: 140px; resize: vertical; }
+
+    .drawer-error {
+      display: none; font-family: 'Lato', sans-serif;
+      font-size: 12px; color: #C0504D; margin-top: 5px;
+    }
+    .drawer-field.has-error input, .drawer-field.has-error textarea { border-color: #C0504D; }
+    .drawer-field.has-error .drawer-error { display: block; }
+
+    #drawer-submit {
+      width: 100%; background: #92B0A8; color: #fff;
+      font-family: 'Poppins', sans-serif; font-weight: 600;
+      font-size: 14px; letter-spacing: 0.04em;
+      border: none; border-radius: 999px; padding: 16px 24px;
+      cursor: pointer;
+      transition: background 200ms ease, opacity 200ms ease;
+      margin-top: 8px;
+    }
+    #drawer-submit:hover { background: #7d9f98; }
+    #drawer-submit:disabled { opacity: 0.7; cursor: default; }
+
+    #drawer-success { display: none; text-align: center; padding: 24px 0; }
+    #drawer-success svg { display: block; margin: 0 auto 16px; }
+    #drawer-success p {
+      font-family: 'Poppins', sans-serif; font-weight: 600;
+      font-size: 18px; color: #92B0A8; line-height: 1.5;
+    }
+
+  /* ── MOBILE OVERRIDES ───────────────────────────────────────────────────── */
+  @media (max-width: 767px) {
+
+    /* Hero — stack layout on mobile */
+    .hero-section {
+      min-height: unset !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: unset !important;
+    }
+    .hero-photo {
+      position: relative !important;
+      width: 100% !important;
+      height: 52vw !important;
+      min-height: 200px;
+      max-height: 260px;
+    }
+    .hero-photo img { object-position: center 15% !important; }
+    .hero-text {
+      position: relative !important;
+      inset: unset !important;
+      padding: 36px 6% 40px !important;
+      background: #F7F4EF;
+    }
+    .hero-text > div { max-width: 100% !important; }
+    .hero-text h1 { font-size: clamp(40px, 10vw, 56px) !important; margin-bottom: 16px !important; }
+    .hero-text p[style*="font-size:11px"] { margin-bottom: 14px !important; }
+
+    /* Bio section */
+    #bio { padding: 48px 5% !important; }
+    .bio-box { padding: 28px 22px !important; border-radius: 12px !important; }
+    .bio-box h2 { font-size: 24px !important; margin-bottom: 16px !important; }
+    .bio-box p { font-size: 15px !important; line-height: 1.75 !important; }
+    #bio .grid { display: flex !important; flex-direction: column !important; gap: 24px !important; }
+
+    /* Credential cards */
+    .cred-card { padding: 16px !important; gap: 12px !important; }
+    .cred-card p { font-size: 12px !important; }
+
+    /* Interests section */
+    #interests { padding: 48px 5% !important; }
+    .interest-pill { font-size: 13px !important; padding: 10px 16px !important; }
+
+    /* Testimonials section */
+    #testimonials { padding: 52px 0 48px !important; }
+    #testimonials .text-center { padding: 0 5% !important; margin-bottom: 32px !important; }
+
+    /* CTA */
+    #cta .flex { flex-direction: column; gap: 20px; }
+    #cta .flex.items-center { flex-direction: column; align-items: flex-start; gap: 14px; }
+  }
+
+  /* ── MOBILE NAV ─────────────────────────────────────────────────────────── */
+  @media (max-width: 767px) {
+    #main-nav > div > .grid {
+      grid-template-columns: 1fr auto !important;
+      height: 62px !important;
+    }
+    #main-nav > div > .grid > div:first-child { display: none !important; }
+    #main-nav > div > .grid > a {
+      justify-self: start !important;
+      grid-column: 1 !important;
+    }
+    #main-nav > div > .grid > a span:first-child { font-size: 21px !important; letter-spacing: 0.06em !important; }
+    #main-nav > div > .grid > a span:last-child  { font-size: 7.5px !important; letter-spacing: 0.18em !important; }
+    #main-nav > div > .grid > div:last-child { grid-column: 2 !important; }
+  }
+  /* ── END MOBILE NAV ─────────────────────────────────────────────────────── */
+
+  /* ── LARGE SCREEN SCALING (1600px+) ─────────────────────────────────────── */
+  @media (min-width: 1600px) {
+    .max-w-\[1300px\] { max-width: 1520px !important; }
+    .max-w-\[640px\]  { max-width: 780px !important; }
+    .max-w-\[480px\]  { max-width: 580px !important; }
+    .max-w-\[520px\]  { max-width: 620px !important; }
+    .max-w-\[560px\]  { max-width: 660px !important; }
+
+    /* Section vertical padding */
+    .py-16 { padding-top:  5rem !important; padding-bottom: 5rem !important; }
+    .py-20 { padding-top:  6rem !important; padding-bottom: 6rem !important; }
+    .py-24 { padding-top:  7rem !important; padding-bottom: 7rem !important; }
+
+    /* Base font bumps */
+    body { font-size: 17px; }
+
+    /* About hero — scale up name at large screens */
+    .hero-section { min-height: 85vh; }
+    .hero-text h1 { font-size: clamp(64px, 6vw, 100px) !important; }
+    .hero-text > div { max-width: 600px !important; }
+    .hero-text p { font-size: 19px !important; }
+  }
+  /* ── END LARGE SCREEN ───────────────────────────────────────────────────── */
+  </style>
+</head>
+<body class="bg-white">
+
+<!-- ════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════ -->
+<nav id="main-nav" class="sticky top-0 z-50" style="background-color:#F7F4EF; border-bottom: 1px solid rgba(57,51,49,0.25);">
+  <div class="w-full" style="padding-left: 4.5%; padding-right: 4.5%;">
+    <div class="grid grid-cols-[1fr_auto_1fr] items-center h-[96px]">
+      <div class="hidden md:flex items-center gap-9">
+        <a href="index.html" class="font-sans font-medium text-[12px] tracking-[0.16em] uppercase text-charcoal hover:text-teal transition-colors duration-200">Home</a>
+        <a href="about.html" class="font-sans font-medium text-[12px] tracking-[0.16em] uppercase text-teal">About</a>
+        <a href="therapy.html" class="font-sans font-medium text-[12px] tracking-[0.16em] uppercase text-charcoal hover:text-teal transition-colors duration-200">Therapy</a>
+        <a href="services.html" class="font-sans font-medium text-[12px] tracking-[0.16em] uppercase text-charcoal hover:text-teal transition-colors duration-200">Services</a>
+        <a href="contact.html" class="font-sans font-medium text-[12px] tracking-[0.16em] uppercase text-charcoal hover:text-teal transition-colors duration-200">Contact</a>
+      </div>
+      <a href="index.html" class="flex flex-col items-center gap-[4px] group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 rounded-sm">
+        <span class="font-serif font-semibold text-[22px] tracking-[0.08em] text-charcoal group-hover:text-teal transition-colors duration-200 leading-none">Tonya Belczyk</span>
+        <span class="font-sans font-medium text-[9px] tracking-[0.22em] uppercase text-teal leading-none">Speech-Language Pathologist</span>
+      </a>
+      <div class="flex justify-end items-center gap-4">
+        <button onclick="openDrawer()" class="hidden md:inline-flex font-sans font-medium text-[12px] tracking-[0.16em] uppercase bg-teal text-white rounded-full px-7 py-3 btn-glow hover:bg-teal-dark active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2">Let's Connect</button>
+        <button id="menu-toggle" aria-label="Open menu" class="md:hidden flex flex-col justify-center gap-[5px] w-8 h-8">
+          <span class="w-full h-px bg-charcoal block transition-transform duration-200 origin-center" id="bar1"></span>
+          <span class="w-full h-px bg-charcoal block transition-opacity duration-200" id="bar2"></span>
+          <span class="w-full h-px bg-charcoal block transition-transform duration-200 origin-center" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-charcoal/10 px-6 pb-6 pt-4 flex flex-col gap-5" style="background-color:#F7F4EF;">
+    <a href="index.html" class="font-sans font-medium text-[11px] tracking-[0.16em] uppercase text-charcoal">Home</a>
+    <a href="about.html" class="font-sans font-medium text-[11px] tracking-[0.16em] uppercase text-teal">About</a>
+    <a href="therapy.html" class="font-sans font-medium text-[11px] tracking-[0.16em] uppercase text-charcoal">Therapy</a>
+    <a href="services.html" class="font-sans font-medium text-[11px] tracking-[0.16em] uppercase text-charcoal">Services</a>
+    <a href="contact.html" class="font-sans font-medium text-[11px] tracking-[0.16em] uppercase text-charcoal">Contact</a>
+    <button onclick="openDrawer()" class="inline-flex w-fit font-sans font-medium text-[10px] tracking-[0.16em] uppercase bg-teal text-white rounded-full px-6 py-2.5 mt-1">Let's Connect</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════
+     SECTION 1 — HERO / INTRO
+════════════════════════════════════════ -->
+<section class="hero-section">
+
+  <!-- Photo panel — right 58% of viewport only, so face is fully visible -->
+  <div class="hero-photo" style="position:absolute; right:0; top:0; bottom:0; width:58%; overflow:hidden;">
+    <img
+      src="brand_assets/About1.jpg"
+      alt="Tonya Belczyk, M.A., CCC-SLP — Speech-Language Pathologist"
+      style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:45% 8%;"
+    >
+    <!-- Gentle left fade — photo bg is already light so blend is subtle -->
+    <div style="position:absolute; inset:0; background:linear-gradient(to right, #F7F4EF 0%, rgba(247,244,239,0.75) 16%, rgba(247,244,239,0.08) 36%, transparent 52%); pointer-events:none;"></div>
+    <!-- Subtle bottom vignette -->
+    <div style="position:absolute; inset:0; background:linear-gradient(to bottom, transparent 72%, rgba(247,244,239,0.2) 100%); pointer-events:none;"></div>
+  </div>
+
+  <!-- Text content -->
+  <div class="hero-text absolute inset-0 flex items-center" style="padding-left:6%; padding-right:6%;">
+    <div style="max-width:520px;">
+
+      <!-- Eyebrow -->
+      <p class="font-sans font-medium reveal" style="font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#748388; line-height:1; margin-bottom:24px;">Speech-Language Pathologist</p>
+
+      <!-- Name -->
+      <h1 class="font-serif font-semibold reveal reveal-delay-1" style="font-size:clamp(52px,5.8vw,88px); line-height:1.06; letter-spacing:-0.02em; color:#393331; margin-bottom:28px;">
+        Tonya<br>Belczyk
+      </h1>
+
+      <!-- Rule -->
+      <div class="w-8 h-px reveal reveal-delay-2" style="background:rgba(145,171,164,0.6); margin-bottom:28px;"></div>
+
+      <!-- Tagline -->
+      <p class="font-sans font-light reveal reveal-delay-2" style="font-size:clamp(15px,1.1vw,18px); line-height:1.8; color:rgba(57,51,49,0.70); max-width:380px; margin-bottom:40px;">
+        Helping children in Oakville, Burlington &amp; Milton find their voice — with warmth, play, and genuine care.
+      </p>
+
+      <!-- Credentials -->
+      <div class="reveal reveal-delay-3" style="display:flex; flex-direction:column; gap:11px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:5px; height:5px; border-radius:50%; background:#91ABA4; flex-shrink:0;"></div>
+          <span class="font-sans font-light" style="font-size:12px; letter-spacing:0.07em; color:rgba(57,51,49,0.65);">CASLPO Registered</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:5px; height:5px; border-radius:50%; background:#91ABA4; flex-shrink:0;"></div>
+          <span class="font-sans font-light" style="font-size:12px; letter-spacing:0.07em; color:rgba(57,51,49,0.65);">CCC-SLP Certified</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:5px; height:5px; border-radius:50%; background:#91ABA4; flex-shrink:0;"></div>
+          <span class="font-sans font-light" style="font-size:12px; letter-spacing:0.07em; color:rgba(57,51,49,0.65);">M.A., University of Pittsburgh</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════
+     SECTION 2 — CREDENTIALS & BIO
+════════════════════════════════════════ -->
+<section id="bio" style="background: #F7F4EF; padding: 96px 6%;">
+  <div style="max-width: 1300px; margin: 0 auto;">
+
+    <div class="grid lg:grid-cols-[1fr_360px] gap-10 xl:gap-14 items-start">
+
+      <!-- Bio white box -->
+      <div class="bio-box reveal" id="bio-box">
+        <p class="font-sans font-medium text-[10px] tracking-[0.28em] uppercase text-teal mb-3 leading-none">The Heart Behind the Work</p>
+        <div class="w-8 h-px mb-7" style="background:rgba(116,131,136,0.35);"></div>
+        <h2 class="font-serif font-semibold text-[clamp(26px,2.8vw,40px)] leading-[1.15] tracking-[0.01em] text-charcoal mb-8">
+          A Passion for<br><em>Helping Children Communicate</em>
+        </h2>
+
+        <p class="font-sans font-light text-[15.5px] leading-[1.85] tracking-[0.02em] text-charcoal/80 mb-6">
+          Tonya Belczyk is a registered Speech-Language Pathologist with a Master of Science degree from the University of Pittsburgh. She holds registration with CASLPO (College of Audiologists and Speech-Language Pathologists of Ontario) and holds the Certificate of Clinical Competence (CCC-SLP) from the American Speech-Language-Hearing Association (ASHA), reflecting her commitment to the highest standards of clinical practice.
+        </p>
+
+        <p class="font-sans font-light text-[15.5px] leading-[1.85] tracking-[0.02em] text-charcoal/80 mb-6">
+          Based in Oakville, Burlington, and Milton, Ontario, Tonya offers individualized speech and language assessments and therapy services for children of all ages — from early intervention through school age and beyond. Her work spans in-home, in-clinic, and virtual settings, making quality care accessible to families across the community.
+        </p>
+
+        <p class="font-sans font-light text-[15.5px] leading-[1.85] tracking-[0.02em] text-charcoal/80">
+          Tonya's therapeutic philosophy centres on meeting each child exactly where they are. By building genuine connections with the children and families she works with, and creating a warm, low-pressure environment, she fosters real progress — all while making the journey feel like play. Her clinical interests span a broad and diverse range of communication needs, with a particular passion for supporting neurodiverse learners and those with complex communication profiles.
+        </p>
+      </div>
+
+      <!-- Credentials sidebar -->
+      <div class="flex flex-col gap-4 reveal reveal-delay-1" id="cred-sidebar">
+
+        <p class="font-sans font-medium text-[10px] tracking-[0.28em] uppercase text-charcoal/50 mb-1 leading-none">Credentials &amp; Affiliations</p>
+
+        <!-- CASLPO -->
+        <div class="cred-card">
+          <div class="cred-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#748388" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-serif font-semibold text-[13px] tracking-[0.01em] text-charcoal leading-snug mb-1">CASLPO Registered</p>
+            <p class="font-sans font-light text-[12px] leading-[1.6] text-charcoal/65">College of Audiologists and Speech-Language Pathologists of Ontario</p>
+          </div>
+        </div>
+
+        <!-- CCC-SLP / ASHA -->
+        <div class="cred-card">
+          <div class="cred-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#748388" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="6"/>
+              <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-serif font-semibold text-[13px] tracking-[0.01em] text-charcoal leading-snug mb-1">CCC-SLP Certified</p>
+            <p class="font-sans font-light text-[12px] leading-[1.6] text-charcoal/65">American Speech-Language-Hearing Association (ASHA)</p>
+          </div>
+        </div>
+
+        <!-- University of Pittsburgh -->
+        <div class="cred-card">
+          <div class="cred-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#748388" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-serif font-semibold text-[13px] tracking-[0.01em] text-charcoal leading-snug mb-1">M.A., Speech-Language Pathology</p>
+            <p class="font-sans font-light text-[12px] leading-[1.6] text-charcoal/65">University of Pittsburgh, Pennsylvania</p>
+          </div>
+        </div>
+
+        <!-- Ontario Regulated -->
+        <div class="cred-card">
+          <div class="cred-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#748388" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-serif font-semibold text-[13px] tracking-[0.01em] text-charcoal leading-snug mb-1">Ontario Regulated</p>
+            <p class="font-sans font-light text-[12px] leading-[1.6] text-charcoal/65">Serving Oakville, Burlington, Milton &amp; surrounding areas</p>
+          </div>
+        </div>
+
+        <!-- Divider + social -->
+        <div class="mt-2 pt-6" style="border-top: 1px solid rgba(57,51,49,0.1);">
+          <p class="font-sans font-medium text-[9px] tracking-[0.22em] uppercase mb-4 leading-none" style="color:rgba(57,51,49,0.50)">Find me online</p>
+          <div id="about-dock" class="flex items-end gap-5" style="height:56px;">
+            <a href="https://www.instagram.com/tbelcz/?hl=en" target="_blank" aria-label="Instagram" class="dock-icon flex items-center justify-center rounded-full flex-shrink-0" style="width:44px;height:44px;background:#748388;color:#fff;transform-origin:bottom center;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" target="_blank" aria-label="Facebook" class="dock-icon flex items-center justify-center rounded-full flex-shrink-0" style="width:44px;height:44px;background:#748388;color:#fff;transform-origin:bottom center;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" target="_blank" aria-label="LinkedIn" class="dock-icon flex items-center justify-center rounded-full flex-shrink-0" style="width:44px;height:44px;background:#748388;color:#fff;transform-origin:bottom center;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="mailto:tonya@tonyabelczyk.com" aria-label="Email" class="dock-icon flex items-center justify-center rounded-full flex-shrink-0" style="width:44px;height:44px;background:#748388;color:#fff;transform-origin:bottom center;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SECTION 2.5 — TESTIMONIALS BAND
+════════════════════════════════════════ -->
+<section id="testimonials" style="background: #F7F4EF; padding: 88px 0 80px;">
+
+  <!-- Heading -->
+  <div style="max-width: 1300px; margin: 0 auto; padding: 0 6%; margin-bottom: 52px;">
+    <div class="text-center reveal" id="tm-heading">
+      <p class="font-sans font-medium text-[10px] tracking-[0.28em] uppercase text-teal mb-4 leading-none">Kind Words from Families</p>
+      <div class="w-8 h-px mx-auto mb-7" style="background:rgba(116,131,136,0.35);"></div>
+      <h2 class="font-serif font-semibold text-[clamp(26px,3vw,42px)] leading-[1.2] tracking-[0.01em] text-charcoal">
+        What Parents Are Saying
+      </h2>
+      <p class="font-sans font-light text-[14px] text-charcoal/60 mt-4 tracking-[0.03em]">Hover to pause &nbsp;·&nbsp; Click a card to read the full story</p>
+    </div>
+  </div>
+
+  <!-- Marquee -->
+  <div class="tm-outer">
+    <div class="tm-track" id="tm-track">
+
+      <!-- === CARD SET (duplicated by JS for seamless loop) === -->
+
+      <!-- Card 1 — Mayan Sakr -->
+      <div class="tm-card" onclick="openTmModal(0)">
+        <div class="tm-stars">★★★★★</div>
+        <p class="tm-quote">"We have been working with Tonya for over a year and have seen tremendous improvement in our son's speech and confidence. Her play-based approach makes every session fun and engaging—our son genuinely looks forward to seeing her and never wants to miss a session!"</p>
+        <p class="tm-read-hint">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Read full testimonial
+        </p>
+        <hr class="tm-divider">
+        <p class="tm-name">Mayan, Parent</p>
+        <p class="tm-role"></p>
+      </div>
+
+      <!-- Card 2 — CT -->
+      <div class="tm-card" onclick="openTmModal(1)">
+        <div class="tm-stars">★★★★★</div>
+        <p class="tm-quote">"With Ms. Tonya's support, my daughter's articulation has improved tremendously and her overall speech and language skills have grown so much. My daughter loves working with Ms. Tonya because she makes every session engaging and enjoyable!"</p>
+        <p class="tm-read-hint">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Read full testimonial
+        </p>
+        <hr class="tm-divider">
+        <p class="tm-name">Claudia, Parent</p>
+        <p class="tm-role"></p>
+      </div>
+
+      <!-- Card 3 — The Longs -->
+      <div class="tm-card" onclick="openTmModal(2)">
+        <div class="tm-stars">★★★★★</div>
+        <p class="tm-quote">"Perhaps the greatest testament to Tonya's approach is that our son never feels like he is 'doing work.' He sees each session as fun, engaging, and something he looks forward to. We are incredibly grateful for the dedication, expertise, and care Tonya brings to her work."</p>
+        <p class="tm-read-hint">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Read full testimonial
+        </p>
+        <hr class="tm-divider">
+        <p class="tm-name">Ashley, Parent</p>
+        <p class="tm-role"></p>
+      </div>
+
+      <!-- Card 4 — J.H. -->
+      <div class="tm-card" onclick="openTmModal(3)">
+        <div class="tm-stars">★★★★★</div>
+        <p class="tm-quote">"Tonya creates such a warm, engaging, and encouraging environment that our daughter genuinely looks forward to every session. Her dedication, communication, and commitment to helping children thrive are truly exceptional."</p>
+        <p class="tm-read-hint">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Read full testimonial
+        </p>
+        <hr class="tm-divider">
+        <p class="tm-name">Justina, Parent</p>
+        <p class="tm-role"></p>
+      </div>
+
+      <!-- Card 5 — N.T. -->
+      <div class="tm-card" onclick="openTmModal(4)">
+        <div class="tm-stars">★★★★★</div>
+        <p class="tm-quote">"Your ability to connect with our son, understand his unique needs, and celebrate every milestone—big or small—has made a meaningful difference in his growth and confidence. Your work has made a lasting impact on our family."</p>
+        <p class="tm-read-hint">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Read full testimonial
+        </p>
+        <hr class="tm-divider">
+        <p class="tm-name">Nirmala, Parent</p>
+        <p class="tm-role">Parent</p>
+      </div>
+
+    </div><!-- /tm-track -->
+  </div><!-- /tm-outer -->
+
+</section>
+
+<!-- ════════════════════════════════════════
+     SECTION 3 — CLINICAL INTERESTS
+════════════════════════════════════════ -->
+<section id="interests" class="interest-section" style="padding: 96px 6%;">
+  <div style="max-width: 1300px; margin: 0 auto; position: relative; z-index: 1;">
+
+    <div class="text-center mb-14 reveal" id="interest-heading">
+      <p class="font-sans font-medium text-[10px] tracking-[0.28em] uppercase text-teal mb-4 leading-none">What Tonya Loves Working On</p>
+      <div class="w-8 h-px mx-auto mb-7" style="background:rgba(116,131,136,0.35);"></div>
+      <h2 class="font-serif font-semibold text-[clamp(28px,3vw,44px)] leading-[1.2] tracking-[0.01em] text-charcoal">
+        Areas of Clinical Interest
+      </h2>
+      <p class="font-sans font-light text-[15px] leading-[1.8] text-charcoal/70 mt-4 max-w-[560px] mx-auto">
+        Tonya brings focused expertise and genuine enthusiasm to each of these areas — every child's communication journey is unique.
+      </p>
+    </div>
+
+    <!-- Pill grid -->
+    <div class="flex flex-wrap justify-center gap-3 reveal reveal-delay-1" id="interest-pills">
+
+      <span class="interest-pill">
+        <span class="pill-dot"></span>
+        Speech Sound Disorders
+      </span>
+      <span class="interest-pill">
+        <span class="pill-dot"></span>
+        Language Development
+      </span>
+      <span class="interest-pill">
+        <span class="pill-dot"></span>
+        Literacy Intervention
+      </span>
+      <span class="interest-pill">
+        <span class="pill-dot"></span>
+        Social Communication
+      </span>
+      <span class="interest-pill">
+        <span class="pill-dot"></span>
+        Supporting Neurodiverse Learners
+      </span>
+
+    </div>
+
+    <!-- Decorative quote -->
+    <div class="mt-16 text-center reveal reveal-delay-2">
+      <p class="font-serif italic text-[clamp(18px,2.2vw,26px)] text-charcoal/50 leading-[1.5]">
+        "Compassionate, family-centered care that helps children build confidence and reach their full communication potential."
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SECTION 4 — CTA
+════════════════════════════════════════ -->
+<section id="cta" style="background:#91ABA4;">
+  <div style="max-width:1300px; margin:0 auto; padding:64px 6%;">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+
+      <!-- Left: headline -->
+      <div>
+        <p class="font-sans font-medium text-[10px] tracking-[0.26em] uppercase mb-3 leading-none" style="color:rgba(255,255,255,0.7);">Ready to take the next step?</p>
+        <h2 class="font-serif font-semibold leading-[1.2] tracking-[0.01em]" style="font-size:clamp(20px,1.8vw,28px); color:#fff; text-shadow:0 1px 8px rgba(57,51,49,0.15);">
+          Work with Tonya — book a free discovery call.
+        </h2>
+      </div>
+
+      <!-- Right: actions -->
+      <div class="flex items-center gap-7 flex-shrink-0">
+        <a href="services.html" class="font-sans font-medium text-[11px] tracking-[0.14em] uppercase transition-colors duration-200" style="color:rgba(255,255,255,0.55); white-space:nowrap;" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">
+          View Services
+        </a>
+        <button onclick="openDrawer()" class="flex-shrink-0 inline-flex items-center gap-2 font-sans font-medium text-[11px] tracking-[0.14em] uppercase rounded-full px-7 py-[14px] transition-all duration-200" style="background:#393331; color:#F4EDE4; border:none; cursor:pointer; white-space:nowrap; box-shadow:0 4px 20px rgba(57,51,49,0.3);" onmouseover="this.style.background='#2a2422'" onmouseout="this.style.background='#393331'">
+          Book a Consultation
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer id="contact" class="bg-charcoal py-16 px-6 md:px-10 lg:px-16">
+  <div class="max-w-[1300px] mx-auto">
+
+    <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-10 lg:gap-16 pb-12 border-b border-ivory/[0.1]">
+
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-4 mb-5">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="52" height="52" class="flex-shrink-0">
+            <circle cx="40" cy="46" r="30" fill="none" stroke="#C8B49A" stroke-width="0.85" opacity="0.7"/>
+            <ellipse cx="40" cy="17.5" rx="2.1" ry="5.8" fill="none" stroke="#C8B49A" stroke-width="0.7" opacity="0.7"/>
+            <ellipse cx="33.6" cy="19.8" rx="1.9" ry="5.2" fill="none" stroke="#C8B49A" stroke-width="0.65" opacity="0.7" transform="rotate(-22 33.6 19.8)"/>
+            <ellipse cx="46.4" cy="19.8" rx="1.9" ry="5.2" fill="none" stroke="#C8B49A" stroke-width="0.65" opacity="0.7" transform="rotate(22 46.4 19.8)"/>
+            <ellipse cx="27.5" cy="24" rx="1.65" ry="4.5" fill="none" stroke="#C8B49A" stroke-width="0.6" opacity="0.7" transform="rotate(-42 27.5 24)"/>
+            <ellipse cx="52.5" cy="24" rx="1.65" ry="4.5" fill="none" stroke="#C8B49A" stroke-width="0.6" opacity="0.7" transform="rotate(42 52.5 24)"/>
+            <line x1="40" y1="23" x2="40" y2="16" stroke="#C8B49A" stroke-width="0.5" opacity="0.4"/>
+            <text x="40" y="62" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="24" font-weight="300" letter-spacing="4" fill="#C8B49A" opacity="0.7">TB</text>
+          </svg>
+          <div>
+            <p class="font-serif font-semibold text-[20px] tracking-[0.07em] text-ivory leading-none">Tonya Belczyk</p>
+            <p class="font-sans font-medium text-[7.5px] tracking-[0.22em] uppercase text-sand/70 leading-none mt-[4px]">Speech-Language Pathologist</p>
+          </div>
+        </div>
+        <p class="font-sans font-light text-[13px] leading-[1.75] tracking-[0.02em] text-ivory/50 max-w-[260px]">
+          Individualized speech and language assessments and therapy for children of all ages in Oakville, Burlington, and Milton, Ontario — in-home, in-clinic, and online.
+        </p>
+        <p class="font-serif italic text-[15px] text-sand/50 mt-5">Connected. Confident. Capable.</p>
+      </div>
+
+      <!-- Navigate -->
+      <div>
+        <h4 class="font-sans font-medium text-[9px] tracking-[0.22em] uppercase text-sand mb-5 leading-none">Navigate</h4>
+        <ul class="space-y-3">
+          <li><a href="index.html"    class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50 hover:text-ivory transition-colors duration-200">Home</a></li>
+          <li><a href="about.html"    class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50 hover:text-ivory transition-colors duration-200">About</a></li>
+          <li><a href="therapy.html"  class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50 hover:text-ivory transition-colors duration-200">Therapies</a></li>
+          <li><a href="services.html" class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50 hover:text-ivory transition-colors duration-200">Services</a></li>
+          <li><a href="contact.html"  class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50 hover:text-ivory transition-colors duration-200">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Get In Touch -->
+      <div>
+        <h4 class="font-sans font-medium text-[9px] tracking-[0.22em] uppercase text-sand mb-5 leading-none">Get In Touch</h4>
+        <ul class="space-y-3">
+          <li>
+            <a href="mailto:tonya@tonyabelczyk.com" class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50 hover:text-ivory transition-colors duration-200">
+              tonya@tonyabelczyk.com
+            </a>
+          </li>
+          <li><span class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50">Oakville, Burlington &amp; Milton, Ontario</span></li>
+          <li><span class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50">In-Home · In-Clinic · Online</span></li>
+          <li class="pt-3">
+            <button onclick="openDrawer()" class="inline-flex font-sans font-medium text-[9px] tracking-[0.18em] uppercase bg-sand text-charcoal rounded-full px-5 py-2.5 hover:bg-ivory active:scale-[0.97] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand focus-visible:ring-offset-2">
+              Book a Free Call →
+            </button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pt-8">
+      <span class="font-sans font-light text-[11px] tracking-[0.04em] text-ivory/30">
+        &copy; 2025 Tonya Belczyk, M.A., CCC-SLP. All rights reserved.
+      </span>
+      <div class="flex gap-6">
+        <a href="#" class="font-sans font-light text-[11px] tracking-[0.04em] text-ivory/30 hover:text-ivory/60 transition-colors duration-200">Privacy Policy</a>
+        <a href="#" class="font-sans font-light text-[11px] tracking-[0.04em] text-ivory/30 hover:text-ivory/60 transition-colors duration-200">Terms of Service</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════
+     CONNECT DRAWER
+════════════════════════════════════════ -->
+<div id="drawer-overlay" onclick="closeDrawer()" aria-hidden="true"></div>
+
+<div id="connect-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-heading">
+  <button id="drawer-close" onclick="closeDrawer()" aria-label="Close">&#215;</button>
+  <p id="drawer-label">Let's Connect</p>
+  <h2 id="drawer-heading">I'd love to hear from you.</h2>
+  <p id="drawer-intro">Fill in the form below and I'll be in touch within 1–2 business days to schedule your free discovery call.</p>
+  <hr id="drawer-rule">
+
+  <form id="drawer-form" novalidate>
+    <div class="drawer-field" id="field-name">
+      <label for="d-name">Full Name</label>
+      <input type="text" id="d-name" name="name" placeholder="Your full name" autocomplete="name">
+      <span class="drawer-error">Please enter your full name.</span>
+    </div>
+    <div class="drawer-field" id="field-email">
+      <label for="d-email">Email Address</label>
+      <input type="email" id="d-email" name="email" placeholder="Your email address" autocomplete="email">
+      <span class="drawer-error" id="email-error">Please enter a valid email address.</span>
+    </div>
+    <div class="drawer-field" id="field-message">
+      <label for="d-message">Tell me about your child</label>
+      <textarea id="d-message" name="message" placeholder="Share a little about your child's age, what you've been noticing, and any questions you have. There are no wrong answers."></textarea>
+      <span class="drawer-error">Please share a little about your child.</span>
+    </div>
+    <button type="submit" id="drawer-submit">Send My Message &rarr;</button>
+  </form>
+
+  <div id="drawer-success">
+    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="22" cy="22" r="21" stroke="#92B0A8" stroke-width="1.5"/>
+      <path d="M13 22.5l6.5 6.5 11.5-13" stroke="#92B0A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <p>You're all set! I'll be in touch within 1–2 business&nbsp;days. I can't wait to&nbsp;connect.</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TESTIMONIAL MODAL
+════════════════════════════════════════ -->
+<div id="tm-modal-overlay" onclick="closeTmModal(event)">
+  <div id="tm-modal" role="dialog" aria-modal="true" aria-labelledby="tm-modal-name">
+    <button id="tm-modal-close" onclick="closeTmModal()" aria-label="Close">&#215;</button>
+    <div id="tm-modal-stars">★★★★★</div>
+    <p id="tm-modal-quote"></p>
+    <hr id="tm-modal-divider">
+    <p id="tm-modal-name"></p>
+    <p id="tm-modal-role"></p>
+  </div>
+</div>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  /* ── Testimonial data ── */
+  const TM_DATA = [
+    {
+      stars: 5,
+      full: 'We have been working with Tonya for over a year and have seen tremendous improvement in our son\'s speech and confidence. He initially struggled with the S and R sounds, but with Tonya\'s expertise and support, he now articulates them beautifully. She has also helped expand his vocabulary and encouraged him to express himself using longer, more detailed phrases.\n\nHer play-based approach makes every session fun and engaging—our son genuinely looks forward to seeing her and never wants to miss a session!\n\nWe are so grateful for everything Tonya has done for him.',
+      name: 'Mayan, Parent',
+      role: ''
+    },
+    {
+      stars: 5,
+      full: 'My 8-year-old daughter has been working with Ms. Tonya for two years. My daughter was language-delayed and struggled with articulation, which affected her confidence and writing. With Ms. Tonya\'s support, her articulation has improved tremendously, and her overall speech and language skills have grown so much.\n\nI appreciate how Ms. Tonya shares a quick overview after each session, provides practice activities, and follows up with detailed session notes. It makes it easy to track my daughter\'s progress and support her between sessions.\n\nMy daughter loves working with Ms. Tonya because she makes every session engaging and enjoyable!',
+      name: 'Claudia, Parent',
+      role: ''
+    },
+    {
+      stars: 5,
+      full: 'Our son, who is soon to be 10 years old, has been working with Tonya for over two years, and we could not be happier with the progress he has made under her guidance. From the very beginning, Tonya has been an exceptional communicator, keeping us informed about our son\'s progress, scheduling, recommendations, and learning goals every step of the way. Perhaps the greatest testament to Tonya\'s approach is that our son never feels like he is "doing work." He sees each session as fun, engaging, and something he looks forward to. It has never been a struggle to get him to attend a session with Tonya. In fact, he is always excited to see her. As parents, there is nothing more reassuring than seeing your child engaged, motivated, and confident in their learning. We are incredibly grateful for the dedication, expertise, and care Tonya brings to her work and would highly recommend her to any family seeking speech and language support for their child.\n\nSincerely,',
+      name: 'Ashley, Parent',
+      role: ''
+    },
+    {
+      stars: 5,
+      full: 'When our daughter was flagged for speech concerns in Junior Kindergarten, we quickly looked for outside support. We were referred to Tonya, who was quick to respond and set up an initial assessment. From there, we established a weekly schedule, and Tonya was always easy to work with and incredibly accommodating with scheduling. We are incredibly grateful for Tonya and the positive impact she has had on our daughter\'s speech and language journey. She creates such a warm, engaging, and encouraging environment that our daughter genuinely looks forward to every session with her.\n\nTonya consistently goes above and beyond to support our daughter\'s success.\n\nDuring her Senior Kindergarten year, our daughter participated in a school-based program focused on oral language and literacy. Tonya collaborated closely with the school SLP to ensure that goals were aligned and that our daughter received the best possible support across all settings. Her dedication, communication, and commitment to helping children thrive are truly exceptional.\n\nThanks to Tonya\'s expertise and caring approach, our daughter has made wonderful progress and gained confidence along the way. We feel so fortunate to have her as part of our daughter\'s support team and cannot recommend her highly enough.',
+      name: 'Justina, Parent',
+      role: ''
+    },
+    {
+      stars: 5,
+      full: 'Hi Tonya,\n\nOver the past three years, we have had the privilege of working with you, and we are incredibly grateful for the dedication, patience, and expertise you have shown in supporting our son\'s communication journey.\n\nYour ability to connect with him, understand his unique needs, and celebrate every milestone—big or small—has made a meaningful difference in his growth and confidence. Through your consistent encouragement, creative strategies, and genuine care, our son has developed skills that have positively impacted his daily life, learning, and relationships.\n\nThank you for believing in his potential and for being such an important part of his progress. We truly appreciate the time, effort, and compassion you have invested in helping him succeed. Your work has made a lasting impact on our family, and we will always be grateful for your support.\n\nWith sincere appreciation,',
+      name: 'Nirmala, Parent',
+      role: ''
+    }
+  ];
+
+  /* ── Duplicate marquee cards for seamless loop ── */
+  ;(function() {
+    const track = document.getElementById('tm-track');
+    if (!track) return;
+    const original = Array.from(track.children);
+    original.forEach(card => {
+      const clone = card.cloneNode(true);
+      // remap onclick index from clone — they share the same data so it's fine
+      track.appendChild(clone);
+    });
+  })();
+
+  /* ── Testimonial modal ── */
+  window.openTmModal = function(idx) {
+    const d = TM_DATA[idx];
+    if (!d) return;
+    document.getElementById('tm-modal-stars').textContent = '★'.repeat(d.stars) + '☆'.repeat(5 - d.stars);
+    document.getElementById('tm-modal-quote').textContent = d.full;
+    document.getElementById('tm-modal-name').textContent = d.name;
+    document.getElementById('tm-modal-role').textContent = d.role;
+    document.getElementById('tm-modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeTmModal = function(e) {
+    if (e && e.target !== document.getElementById('tm-modal-overlay') && e.target !== document.getElementById('tm-modal-close')) return;
+    document.getElementById('tm-modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.getElementById('tm-modal-overlay').classList.contains('open')) {
+      document.getElementById('tm-modal-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+
+  /* ── Nav scroll shadow ── */
+  const nav = document.getElementById('main-nav')
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 8) }, { passive: true })
+
+  /* ── Mobile menu ── */
+  const menuToggle = document.getElementById('menu-toggle')
+  const mobileMenu = document.getElementById('mobile-menu')
+  const bar1 = document.getElementById('bar1'), bar2 = document.getElementById('bar2'), bar3 = document.getElementById('bar3')
+  let menuOpen = false
+  menuToggle.addEventListener('click', () => {
+    menuOpen = !menuOpen
+    mobileMenu.classList.toggle('hidden', !menuOpen)
+    bar1.style.transform = menuOpen ? 'translateY(6px) rotate(45deg)' : ''
+    bar3.style.transform = menuOpen ? 'translateY(-6px) rotate(-45deg)' : ''
+    bar2.style.opacity = menuOpen ? '0' : ''
+  })
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menuOpen = false; mobileMenu.classList.add('hidden')
+    bar1.style.transform = bar3.style.transform = ''; bar2.style.opacity = ''
+  }))
+
+  /* ── Hero entrance (GSAP) ── */
+  ;(function() {
+    if (typeof gsap === 'undefined') return
+    const eyebrow = document.getElementById('hero-eyebrow')
+    gsap.set('.hero-text', { opacity: 0, x: -20 })
+    gsap.set('.hero-photo', { opacity: 0, scale: 1.04 })
+    const tl = gsap.timeline({ delay: 0.1 })
+    tl.to('.hero-text', { opacity: 1, x: 0, duration: 1.0, ease: 'power2.out' })
+      .to('.hero-photo', { opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out' }, '-=0.7')
+  })()
+
+  /* ── Scroll reveal (IntersectionObserver) ── */
+  ;(function() {
+    const els = document.querySelectorAll('.reveal')
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } })
+    }, { threshold: 0.12 })
+    els.forEach(el => io.observe(el))
+  })()
+
+  /* ── Social dock magnify ── */
+  ;(function() {
+    const dock = document.getElementById('about-dock')
+    if (!dock) return
+    const items = Array.from(dock.querySelectorAll('.dock-icon'))
+    dock.addEventListener('mousemove', e => {
+      items.forEach(item => {
+        const rect = item.getBoundingClientRect(), center = rect.left + rect.width/2, dist = Math.abs(e.clientX - center)
+        item.style.transform = dist < 90 ? 'scale(' + (1 + (1 - dist/90)*0.6) + ')' : 'scale(1)'
+      })
+    })
+    dock.addEventListener('mouseleave', () => items.forEach(item => item.style.transform = 'scale(1)'))
+  })()
+
+  /* ── Drawer ── */
+  window.openDrawer = function() {
+    document.getElementById('drawer-overlay').classList.add('drawer-open')
+    document.getElementById('connect-drawer').classList.add('drawer-open')
+    document.body.style.overflow = 'hidden'
+    document.getElementById('drawer-close').focus()
+  }
+  window.closeDrawer = function() {
+    document.getElementById('drawer-overlay').classList.remove('drawer-open')
+    document.getElementById('connect-drawer').classList.remove('drawer-open')
+    document.body.style.overflow = ''
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.getElementById('connect-drawer').classList.contains('drawer-open')) closeDrawer()
+  })
+  function drawerSetError(id, show) { var el = document.getElementById(id); if(el) el.classList.toggle('has-error', show) }
+  document.addEventListener('DOMContentLoaded', function() {
+    var dn = document.getElementById('d-name'), de = document.getElementById('d-email'), dm = document.getElementById('d-message')
+    if(dn) dn.addEventListener('input', () => drawerSetError('field-name', false))
+    if(de) de.addEventListener('input', () => drawerSetError('field-email', false))
+    if(dm) dm.addEventListener('input', () => drawerSetError('field-message', false))
+    var form = document.getElementById('drawer-form')
+    if(!form) return
+    form.addEventListener('submit', function(e) {
+      e.preventDefault()
+      var name=dn.value.trim(), email=de.value.trim(), msg=dm.value.trim(), valid=true
+      var isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+      if(!name){drawerSetError('field-name',true);valid=false}
+      if(!isEmail(email)){drawerSetError('field-email',true);valid=false}
+      if(!msg){drawerSetError('field-message',true);valid=false}
+      if(!valid) return
+      var btn=document.getElementById('drawer-submit'),success=document.getElementById('drawer-success')
+      btn.disabled=true; btn.textContent='Sending…'
+      fetch('https://formspree.io/tonya@tonyabelczyk.com',{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({name,email,message:msg,_subject:'New enquiry from '+name})}).then(r=>r.json()).then(data=>{if(data.ok){form.style.transition='opacity 300ms ease';form.style.opacity='0';setTimeout(()=>{form.style.display='none';success.style.display='block'},300)}else{btn.disabled=false;btn.textContent='Send My Message →'}}).catch(()=>{btn.disabled=false;btn.textContent='Send My Message →'})
+    })
+  })
+</script>
+</body>
+</html>

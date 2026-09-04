@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — Tonya Belczyk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,300;1,600&family=Lato:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal:    { DEFAULT: '#748388', dark: '#5C6D72' },
+            sage:    '#A8BFB5',
+            ivory:   { DEFAULT: '#F4EDE4', dark: '#EAE0D4' },
+            sand:    { DEFAULT: '#C8B49A', light: '#E5D9CB' },
+            charcoal:{ DEFAULT: '#393331', mid: '#6A6360' },
+          },
+          fontFamily: {
+            serif: ['"Poppins"', 'system-ui', 'sans-serif'],
+            sans:  ['"Lato"', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', system-ui, sans-serif;
+      font-weight: 300;
+      color: #393331;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* nav shadow */
+    #main-nav { transition: box-shadow 0.3s ease; }
+    #main-nav.scrolled { box-shadow: 0 1px 0 rgba(57,51,49,0.1); }
+
+    /* glow button */
+    .btn-glow { transition: background-color 0.2s ease, box-shadow 0.25s ease; }
+    .btn-glow:hover { box-shadow: 0 0 14px rgba(116,131,136,0.6), 0 0 28px rgba(116,131,136,0.25); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+    .reveal-d4 { transition-delay: 0.32s; }
+
+    /* ── HEADER GRAIN ── */
+    .grain-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+
+    /* ── STEP WATERMARK NUMBER ── */
+    .step-num {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: clamp(130px, 20vw, 260px);
+      line-height: 0.82;
+      color: rgba(57,51,49,0.045);
+      pointer-events: none;
+      user-select: none;
+      position: absolute;
+      top: -0.08em;
+      left: -0.06em;
+      z-index: 0;
+      letter-spacing: -0.04em;
+    }
+
+    /* ── STEP IMAGE ── */
+    .step-img {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow:
+        0 2px 4px rgba(57,51,49,0.06),
+        0 8px 24px rgba(57,51,49,0.09),
+        0 24px 56px rgba(57,51,49,0.07);
+    }
+    .step-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .step-img:hover img { transform: scale(1.04); }
+    .step-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, rgba(145,171,164,0.18) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* ── STEP DIVIDER ── */
+    .step-row + .step-row {
+      border-top: 1px solid rgba(57,51,49,0.1);
+    }
+
+    /* ── POLICY CARD ── */
+    .policy-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 36px 32px;
+      border: 1px solid rgba(116,131,136,0.22);
+      box-shadow: 0 0 0 1px rgba(116,131,136,0.18), 0 0 24px rgba(116,131,136,0.32), 0 0 56px rgba(116,131,136,0.18), 0 4px 20px rgba(116,131,136,0.14);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1),
+                  box-shadow 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .policy-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 0 1px rgba(116,131,136,0.22), 0 0 32px rgba(116,131,136,0.4), 0 0 72px rgba(116,131,136,0.22), 0 8px 28px rgba(116,131,136,0.18);
+    }
+
+    /* ── CTA BUTTON ── */
+    .cta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 56px;
+      padding: 0 36px;
+      border-radius: 999px;
+      background: #393331;
+      color: #F4EDE4;
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: background 0.22s ease, box-shadow 0.22s ease, transform 0.15s ease;
+    }
+    .cta-pill:hover {
+      background: #2a2422;
+      box-shadow: 0 6px 24px rgba(57,51,49,0.35);
+    }
+    .cta-pill:active { transform: scale(0.97); }
+    .cta-pill:focus-visible {
+      outline: 2px solid rgba(244,237,228,0.6);
+      outline-offset: 3px;
+    }
+
+    /* ── CONNECT DRAWER ── */
+    #drawer-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.40);
+      opacity: 0; pointer-events: none;
+      transition: opacity 400ms ease-out; z-index: 900;
+    }
+    #drawer-overlay.drawer-open { opacity: 1; pointer-events: all; }
+    #connect-drawer {
+      position: fixed; top: 0; right: 0; width: 480px; height: 100%;
+      background: #F7F4EF;
+      box-shadow: -8px 0 40px rgba(57,51,49,0.18);
+      transform: translateX(100%);
+      transition: transform 400ms cubic-bezier(0.16,1,0.3,1);
+      z-index: 901; overflow-y: auto; padding: 48px; box-sizing: border-box;
+    }
+    #connect-drawer.drawer-open { transform: translateX(0); }
+    @media (max-width: 767px) {
+      #connect-drawer {
+        top: auto; bottom: 0; left: 0; right: 0; width: 100%;
+        height: auto; max-height: 92vh;
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 -8px 40px rgba(57,51,49,0.18);
+        transform: translateY(100%); padding: 32px;
+      }
+      #connect-drawer.drawer-open { transform: translateY(0); }
+    }
+    #drawer-close {
+      position: absolute; top: 20px; right: 20px;
+      background: none; border: none;
+      font-size: 24px; color: #4A4A4A;
+      cursor: pointer; line-height: 1; padding: 4px 8px;
+      transition: color 200ms ease;
+    }
+    #drawer-close:hover { color: #92B0A8; }
+    #drawer-label { font-family:'Lato',sans-serif; font-weight:400; font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:#92B0A8; margin-bottom:12px; }
+    #drawer-heading { font-family:'Poppins',sans-serif; font-weight:600; font-size:clamp(22px,2vw,28px); color:#4A4A4A; line-height:1.2; margin-bottom:14px; }
+    #drawer-intro { font-family:'Lato',sans-serif; font-weight:400; font-size:15px; color:#4A4A4A; line-height:1.75; margin-bottom:20px; }
+    #drawer-rule { border:none; border-top:1px solid #92B0A8; margin-bottom:28px; }
+    .drawer-field { margin-bottom:20px; }
+    .drawer-field label { display:block; font-family:'Lato',sans-serif; font-weight:400; font-size:13px; color:#4A4A4A; margin-bottom:6px; }
+    .drawer-field input, .drawer-field textarea {
+      width:100%; background:#F7F4EF; border:1px solid #DCCFC0; border-radius:8px;
+      padding:12px 14px; font-family:'Lato',sans-serif; font-weight:400; font-size:14px;
+      color:#4A4A4A; box-sizing:border-box; outline:none;
+      transition: border-color 200ms ease, box-shadow 200ms ease;
+    }
+    .drawer-field input::placeholder, .drawer-field textarea::placeholder { color:#B0A89A; }
+    .drawer-field input:focus, .drawer-field textarea:focus { border-color:#92B0A8; box-shadow:0 0 0 3px rgba(127,184,178,0.18); }
+    .drawer-field textarea { min-height:140px; resize:vertical; }
+    .drawer-error { display:none; font-family:'Lato',sans-serif; font-size:12px; color:#C0504D; margin-top:5px; }
+    .drawer-field.has-error input, .drawer-field.has-error textarea { border-color:#C0504D; }
+    .drawer-field.has-error .drawer-error { display:block; }
+    #drawer-submit {
+      width:100%; background:#92B0A8; color:#fff;
+      font-family:'Poppins',sans-serif; font-weight:600; font-size:14px;
+      letter-spacing:0.04em; border:none; border-radius:999px;
+      padding:16px 24px; cursor:pointer;
+      transition: background 200ms ease, opacity 200ms ease; margin-top:8px;
+    }
+    #drawer-submit:hover { background:#7d9f98; }
+    #drawer-submit:disabled { opacity:0.7; cursor:default; }
+    #drawer-success { display:none; text-align:center; padding:24px 0; }
+    #drawer-success svg { display:block; margin:0 auto 16px; }
+    #drawer-success p { font-family:'Poppins',sans-serif; font-weight:600; font-size:18px; color:#92B0A8; line-height:1.5; }
+
+  /* ── MOBILE OVERRIDES ───────────────────────────────────────────────────── */
+  @media (max-width: 767px) {
+
+    /* Hero */
+    section[style*="position:relative; overflow:hidden; background:#F4EDE4"] .py-32 {
+      padding-top: 80px !important; padding-bottom: 80px !important;
+    }
+    section[style*="position:relative; overflow:hidden; background:#F4EDE4"] h1 {
+      font-size: 48px !important; margin-bottom: 16px !important;
+    }
+
+    /* Step rows */
+    .step-row .grid { display: flex !important; flex-direction: column !important; gap: 0 !important; }
+
+    /* Step images — show after text on mobile, reasonable height */
+    .step-img { aspect-ratio: 4/3 !important; min-height: unset !important; order: 2; margin-top: 24px; }
+    .step-img.order-2 { order: 2 !important; }
+
+    /* Step text content */
+    .step-row .order-1 { order: 1 !important; }
+    .step-row h2 { font-size: 28px !important; margin-bottom: 12px !important; }
+    .step-row p[style*="font-size:clamp"] { font-size: 15px !important; }
+
+    /* Step section padding */
+    .step-row .py-20 { padding-top: 48px !important; padding-bottom: 48px !important; }
+    .step-row .py-28 { padding-top: 48px !important; padding-bottom: 48px !important; }
+    .step-row .md\:py-28 { padding-top: 48px !important; padding-bottom: 48px !important; }
+
+    /* Watermark number — hide on mobile */
+    .step-num { display: none !important; }
+
+    /* Policy cards */
+    section .grid.md\:grid-cols-3 { gap: 14px !important; }
+    .policy-card { padding: 24px 20px !important; }
+    .policy-card h3 { font-size: 15px !important; }
+
+    /* CTA */
+    #cta .flex { flex-direction: column; gap: 20px; }
+    #cta .flex.items-center { flex-direction: column; align-items: flex-start; gap: 14px; }
+  }
+
+  /* ── MOBILE NAV ─────────────────────────────────────────────────────────── */
+  @media (max-width: 767px) {
+    #main-nav > div > .grid {
+      grid-template-columns: 1fr auto !important;
+      height: 62px !important;
+    }
+    #main-nav > div > .grid > div:first-child { display: none !important; }
+    #main-nav > div > .grid > a {
+      justify-self: start !important;
+      grid-column: 1 !important;
+    }
+    #main-nav > div > .grid > a span:first-child { font-size: 21px !important; letter-spacing: 0.06em !important; }
+    #main-nav > div > .grid > a span:last-child  { font-size: 7.5px !important; letter-spacing: 0.18em !important; }
+    #main-nav > div > .grid > div:last-child { grid-column: 2 !important; }
+  }
+  /* ── END MOBILE NAV ─────────────────────────────────────────────────────── */
+
+  /* ── LARGE SCREEN SCALING (1600px+) ─────────────────────────────────────── */
+  @media (min-width: 1600px) {
+    .max-w-\[1300px\] { max-width: 1520px !important; }
+    .max-w-\[640px\]  { max-width: 780px !important; }
+    .max-w-\[480px\]  { max-width: 580px !important; }
+    .max-w-\[520px\]  { max-width: 620px !important; }
+    .max-w-\[560px\]  { max-width: 660px !important; }
+
+    /* Section vertical padding */
+    .py-16 { padding-top:  5rem !important; padding-bottom: 5rem !important; }
+    .py-20 { padding-top:  6rem !important; padding-bottom: 6rem !important; }
+    .py-24 { padding-top:  7rem !important; padding-bottom: 7rem !important; }
+
+    /* Base font bumps */
+    body { font-size: 17px; }
+  }
+  /* ── END LARGE SCREEN ───────────────────────────────────────────────────── */
+  </style>
+</head>
+<body class="bg-ivory">
+
+<!-- ══ NAV ══════════════════════════════════════════════════════════════ -->
+<nav id="main-nav" class="sticky top-0 z-50" style="background-color:#F7F4EF; border-bottom: 1px solid rgba(57,51,49,0.25);">
+  <div class="w-full" style="padding-left: 4.5%; padding-right: 4.5%;">
+    <div class="grid grid-cols-[1fr_auto_1fr] items-center h-[96px]">
+      <div class="hidden md:flex items-center gap-9">
+        <a href="index.html" class="font-sans font-medium text-[12px] tracking-[0.16em] uppercase text-charcoal hover:text-teal transition-colors duration-200">Home</a>
+        <a href="about.html" class="font-sans font-medium text-[12px] tracking-[0.16em] uppercase text-charcoal hover:text-teal transition-colors duration-200">About</a>
+        <a href="therapy.html" class="font-sans font-medium text-[12px] tracking-[0.16em] uppercase text-charcoal hover:text-teal transition-colors duration-200">Therapy</a>
+        <a href="services.html" class="font-sans font-medium text-[12px] tracking-[0.16em] uppercase text-teal">Services</a>
+        <a href="contact.html" class="font-sans font-medium text-[12px] tracking-[0.16em] uppercase text-charcoal hover:text-teal transition-colors duration-200">Contact</a>
+      </div>
+      <a href="index.html" class="flex flex-col items-center gap-[4px] group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 rounded-sm">
+        <span class="font-serif font-semibold text-[22px] tracking-[0.08em] text-charcoal group-hover:text-teal transition-colors duration-200 leading-none">Tonya Belczyk</span>
+        <span class="font-sans font-medium text-[9px] tracking-[0.22em] uppercase text-teal leading-none">Speech-Language Pathologist</span>
+      </a>
+      <div class="flex justify-end items-center gap-4">
+        <button onclick="openDrawer()" class="hidden md:inline-flex font-sans font-medium text-[12px] tracking-[0.16em] uppercase bg-teal text-white rounded-full px-7 py-3 btn-glow hover:bg-teal-dark active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2">Let's Connect</button>
+        <button id="menu-toggle" aria-label="Open menu" class="md:hidden flex flex-col justify-center gap-[5px] w-8 h-8">
+          <span class="w-full h-px bg-charcoal block transition-transform duration-200 origin-center" id="bar1"></span>
+          <span class="w-full h-px bg-charcoal block transition-opacity duration-200" id="bar2"></span>
+          <span class="w-full h-px bg-charcoal block transition-transform duration-200 origin-center" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-charcoal/10 px-6 pb-6 pt-4 flex flex-col gap-5" style="background-color:#F7F4EF;">
+    <a href="index.html" class="font-sans font-medium text-[11px] tracking-[0.16em] uppercase text-charcoal">Home</a>
+    <a href="about.html" class="font-sans font-medium text-[11px] tracking-[0.16em] uppercase text-charcoal">About</a>
+    <a href="therapy.html" class="font-sans font-medium text-[11px] tracking-[0.16em] uppercase text-charcoal">Therapy</a>
+    <a href="services.html" class="font-sans font-medium text-[11px] tracking-[0.16em] uppercase text-teal">Services</a>
+    <a href="contact.html" class="font-sans font-medium text-[11px] tracking-[0.16em] uppercase text-charcoal">Contact</a>
+    <button onclick="openDrawer()" class="inline-flex w-fit font-sans font-medium text-[10px] tracking-[0.16em] uppercase bg-teal text-white rounded-full px-6 py-2.5 mt-1">Let's Connect</button>
+  </div>
+</nav>
+
+<!-- ══ SECTION 1 — HEADER ════════════════════════════════════════════════ -->
+<section style="position:relative; overflow:hidden; background:#F4EDE4;">
+
+  <!-- Full-bleed watercolor background -->
+  <img src="brand_assets/Services.png" alt=""
+       style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
+
+  <!-- Soft ivory wash for legibility over the light watercolor -->
+  <div style="position:absolute; inset:0; background:rgba(244,237,228,0.42);"></div>
+
+  <!-- Teal vertical accent line -->
+  <div style="position:absolute; left:0; top:0; bottom:0; width:3px; background:linear-gradient(to bottom, transparent 0%, #91ABA4 30%, #91ABA4 70%, transparent 100%); opacity:0.65;"></div>
+
+  <div style="padding-left:4.5%; padding-right:4.5%; position:relative; z-index:1;" class="py-32 md:py-44">
+    <div class="max-w-[1300px] mx-auto text-center">
+
+      <p class="reveal reveal-d1 font-sans font-medium tracking-[0.28em] uppercase mb-5" style="font-size:11px; color:#91ABA4; letter-spacing:0.28em;">Clinical Services</p>
+      <h1 class="reveal reveal-d1 font-serif font-semibold leading-[1.08] tracking-[-0.02em]"
+          style="font-size:clamp(52px,7.5vw,96px); color:#393331; margin-bottom:24px;">
+        Services
+      </h1>
+
+      <p class="reveal reveal-d2 font-sans font-light leading-[1.85] mx-auto"
+         style="font-size:clamp(15px,1.1vw,18px); color:rgba(57,51,49,0.70); max-width:480px;">
+        Every child's path is different. Here's how we guide families from the very first conversation to meaningful, lasting progress — with clarity and care at every step.
+      </p>
+
+    </div>
+  </div>
+
+  <!-- Gradient fade into beige -->
+  <div style="position:absolute; bottom:0; left:0; right:0; height:120px; z-index:2; pointer-events:none; background:linear-gradient(to bottom, transparent 0%, #F4EDE4 100%);"></div>
+
+</section>
+
+<!-- ══ SECTION 2 — PROCESS STEPS ════════════════════════════════════════ -->
+<section style="background:#F4EDE4;">
+
+  <!-- STEP 1: ASSESSMENT -->
+  <div class="step-row">
+    <div style="padding-left:4.5%; padding-right:4.5%;" class="py-20 md:py-28">
+      <div class="max-w-[1300px] mx-auto">
+        <div class="grid md:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+          <!-- Text -->
+          <div class="reveal relative" style="padding-top:0.5rem;">
+            <span class="step-num" aria-hidden="true">01</span>
+            <div style="position:relative; z-index:1;">
+              <div class="flex items-center gap-3 mb-5">
+                <p class="font-sans font-medium text-[10px] tracking-[0.26em] uppercase" style="color:#91ABA4;">Step One</p>
+                <div style="width:28px; height:1px; background:rgba(145,171,164,0.45);"></div>
+              </div>
+              <h2 class="font-serif font-semibold leading-[1.15] tracking-[0.01em] text-charcoal mb-6"
+                  style="font-size:clamp(30px,3.5vw,48px);">
+                Assessment
+              </h2>
+              <p class="font-sans font-light leading-[1.85] text-charcoal/75 mb-6"
+                 style="font-size:clamp(15px,1.1vw,18px); max-width:520px;">
+                Assessment involves the administration of assessment materials, followed by careful scoring and goal-setting to guide next steps. Tonya believes in spending just enough time on assessment to get intervention started — since ongoing assessment is built into every treatment plan, and families see the greatest value in actual therapy sessions.
+              </p>
+              <p class="font-sans font-light leading-[1.85] text-charcoal/75"
+                 style="font-size:clamp(15px,1.1vw,18px); max-width:520px;">
+                Following the initial assessment, families receive a personalized intervention plan outlining clear treatment goals, so everyone understands the path forward.
+              </p>
+            </div>
+          </div>
+
+          <!-- Image -->
+          <div class="reveal reveal-d2 step-img" style="aspect-ratio:5/4;">
+            <img src="brand_assets/RedoImage2.png" alt="SLP administering an assessment with a child at a table">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: INTERVENTION -->
+  <div class="step-row" style="border-top:1px solid rgba(57,51,49,0.1);">
+    <div style="padding-left:4.5%; padding-right:4.5%;" class="py-20 md:py-28">
+      <div class="max-w-[1300px] mx-auto">
+        <div class="grid md:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+          <!-- Image (left on desktop) -->
+          <div class="reveal step-img order-2 md:order-1" style="aspect-ratio:5/4;">
+            <img src="brand_assets/RedoImage1.png" alt="SLP and child engaged in a therapy activity" style="object-position:90% center;">
+          </div>
+
+          <!-- Text (right on desktop) -->
+          <div class="reveal reveal-d2 relative order-1 md:order-2" style="padding-top:0.5rem; padding-left:clamp(0px, 4vw, 48px);">
+            <span class="step-num" aria-hidden="true">02</span>
+            <div style="position:relative; z-index:1;">
+              <div class="flex items-center gap-3 mb-5">
+                <p class="font-sans font-medium text-[10px] tracking-[0.26em] uppercase" style="color:#91ABA4;">Step Two</p>
+                <div style="width:28px; height:1px; background:rgba(145,171,164,0.45);"></div>
+              </div>
+              <h2 class="font-serif font-semibold leading-[1.15] tracking-[0.01em] text-charcoal mb-6"
+                  style="font-size:clamp(30px,3.5vw,48px);">
+                Intervention
+              </h2>
+              <p class="font-sans font-light leading-[1.85] text-charcoal/75 mb-6"
+                 style="font-size:clamp(15px,1.1vw,18px); max-width:520px;">
+                Weekly intervention sessions provide focused, one-on-one therapy time tailored to each child's goals. In addition to direct sessions, families receive home programming — practical instructions and activity suggestions — to support progress between visits.
+              </p>
+              <p class="font-sans font-light leading-[1.85] text-charcoal/75"
+                 style="font-size:clamp(15px,1.1vw,18px); max-width:520px;">
+                Clear, consistent communication is a priority throughout the process, ensuring families stay informed and involved every step of the way.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══ SECTION 3 — POLICIES ══════════════════════════════════════════════ -->
+<section style="background:#EAE0D4;">
+  <div style="padding-left:4.5%; padding-right:4.5%;" class="py-20 md:py-28">
+    <div class="max-w-[1300px] mx-auto">
+
+      <!-- Section header -->
+      <div class="reveal mb-14">
+        <div class="flex items-center gap-4 mb-5">
+          <p class="font-sans font-medium text-[10px] tracking-[0.26em] uppercase" style="color:#748388;">Practical Info</p>
+          <div style="width:28px; height:1px; background:rgba(116,131,136,0.4);"></div>
+        </div>
+        <h2 class="font-serif font-semibold leading-[1.15] tracking-[0.01em] text-charcoal"
+            style="font-size:clamp(28px,3vw,42px); max-width:520px;">
+          Policies &amp; Logistics
+        </h2>
+      </div>
+
+      <!-- 3-column policy grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1: Cancellations -->
+        <div class="reveal policy-card">
+          <!-- Calendar icon -->
+          <div class="mb-6" style="width:48px; height:48px; border-radius:10px; background:rgba(145,171,164,0.14); display:flex; align-items:center; justify-content:center;">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="4" width="18" height="16" rx="2.5" stroke="#748388" stroke-width="1.4" fill="none"/>
+              <line x1="2" y1="8.5" x2="20" y2="8.5" stroke="#748388" stroke-width="1.4"/>
+              <line x1="7" y1="2" x2="7" y2="6" stroke="#748388" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="15" y1="2" x2="15" y2="6" stroke="#748388" stroke-width="1.4" stroke-linecap="round"/>
+              <circle cx="7.5" cy="13.5" r="1" fill="#748388"/>
+              <circle cx="11" cy="13.5" r="1" fill="#748388"/>
+              <circle cx="14.5" cy="13.5" r="1" fill="#748388"/>
+            </svg>
+          </div>
+          <h3 class="font-serif font-semibold text-charcoal mb-1" style="font-size:17px; letter-spacing:0.01em;">Cancellations &amp; No-Shows</h3>
+          <div style="width:28px; height:1px; background:#91ABA4; margin:10px 0 14px;"></div>
+          <p class="font-sans font-light text-[14px] leading-[1.8] text-charcoal/70">
+            We ask for at least <strong style="font-weight:400; color:rgba(57,51,49,0.90);">24 hours' notice</strong> when cancelling or rescheduling a session. Appointments cancelled with less notice or missed entirely will be charged at the full session rate. We understand life happens — please reach out as early as possible.
+          </p>
+        </div>
+
+        <!-- Card 2: Insurance -->
+        <div class="reveal reveal-d1 policy-card">
+          <!-- Shield icon -->
+          <div class="mb-6" style="width:48px; height:48px; border-radius:10px; background:rgba(145,171,164,0.14); display:flex; align-items:center; justify-content:center;">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 2L3.5 5.5V11C3.5 15.14 6.8 18.97 11 20C15.2 18.97 18.5 15.14 18.5 11V5.5L11 2Z" stroke="#748388" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
+              <path d="M8 11l2 2 4-4" stroke="#748388" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="font-serif font-semibold text-charcoal mb-1" style="font-size:17px; letter-spacing:0.01em;">Insurance Coverage</h3>
+          <div style="width:28px; height:1px; background:#91ABA4; margin:10px 0 14px;"></div>
+          <p class="font-sans font-light text-[14px] leading-[1.8] text-charcoal/70">
+            We are a <strong style="font-weight:400; color:rgba(57,51,49,0.90);">private-pay practice</strong> and do not direct bill insurance providers. Upon request, we issue detailed receipts (superbills) that you can submit to your insurer for possible reimbursement. Many extended health plans include SLP services — we recommend checking your coverage in advance.
+          </p>
+        </div>
+
+        <!-- Card 3: Invoicing -->
+        <div class="reveal reveal-d2 policy-card">
+          <!-- Receipt icon -->
+          <div class="mb-6" style="width:48px; height:48px; border-radius:10px; background:rgba(145,171,164,0.14); display:flex; align-items:center; justify-content:center;">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 2h12a1 1 0 0 1 1 1v16l-3-2-3 2-3-2-3 2V3a1 1 0 0 1 1-1z" stroke="#748388" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
+              <line x1="8" y1="8" x2="14" y2="8" stroke="#748388" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="8" y1="11.5" x2="14" y2="11.5" stroke="#748388" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="8" y1="15" x2="11" y2="15" stroke="#748388" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="font-serif font-semibold text-charcoal mb-1" style="font-size:17px; letter-spacing:0.01em;">Invoices &amp; Payments</h3>
+          <div style="width:28px; height:1px; background:#91ABA4; margin:10px 0 14px;"></div>
+          <p class="font-sans font-light text-[14px] leading-[1.8] text-charcoal/70">
+            Invoices are issued after each session and are due within <strong style="font-weight:400; color:rgba(57,51,49,0.90);">7 days</strong>. We accept e-transfer and major credit cards. A card on file may be required to secure your booking. Please reach out if you have any questions about payment options.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CTA
+════════════════════════════════════════ -->
+<section id="cta" style="background:#91ABA4;">
+  <div style="max-width:1300px; margin:0 auto; padding:64px 6%;">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+      <div>
+        <p class="font-sans font-medium text-[10px] tracking-[0.26em] uppercase mb-3 leading-none" style="color:rgba(255,255,255,0.7);">Ready to take the next step?</p>
+        <h2 class="font-serif font-semibold leading-[1.2] tracking-[0.01em]" style="font-size:clamp(20px,1.8vw,28px); color:#fff; text-shadow:0 1px 8px rgba(57,51,49,0.15);">
+          Work with Tonya — book a free discovery call.
+        </h2>
+      </div>
+      <div class="flex items-center gap-7 flex-shrink-0">
+        <a href="therapy.html" class="font-sans font-medium text-[11px] tracking-[0.14em] uppercase transition-colors duration-200" style="color:rgba(255,255,255,0.55); white-space:nowrap;" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">View Therapies</a>
+        <button onclick="openDrawer()" class="flex-shrink-0 inline-flex items-center gap-2 font-sans font-medium text-[11px] tracking-[0.14em] uppercase rounded-full px-7 py-[14px] transition-all duration-200" style="background:#393331; color:#F4EDE4; border:none; cursor:pointer; white-space:nowrap; box-shadow:0 4px 20px rgba(57,51,49,0.3);" onmouseover="this.style.background='#2a2422'" onmouseout="this.style.background='#393331'">
+          Book a Consultation
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════════════ -->
+<footer id="contact" class="bg-charcoal py-16 px-6 md:px-10 lg:px-16">
+  <div class="max-w-[1300px] mx-auto">
+
+    <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-10 lg:gap-16 pb-12 border-b border-ivory/[0.1]">
+
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-4 mb-5">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="52" height="52" class="flex-shrink-0">
+            <circle cx="40" cy="46" r="30" fill="none" stroke="#C8B49A" stroke-width="0.85" opacity="0.7"/>
+            <ellipse cx="40" cy="17.5" rx="2.1" ry="5.8" fill="none" stroke="#C8B49A" stroke-width="0.7" opacity="0.7"/>
+            <ellipse cx="33.6" cy="19.8" rx="1.9" ry="5.2" fill="none" stroke="#C8B49A" stroke-width="0.65" opacity="0.7" transform="rotate(-22 33.6 19.8)"/>
+            <ellipse cx="46.4" cy="19.8" rx="1.9" ry="5.2" fill="none" stroke="#C8B49A" stroke-width="0.65" opacity="0.7" transform="rotate(22 46.4 19.8)"/>
+            <ellipse cx="27.5" cy="24" rx="1.65" ry="4.5" fill="none" stroke="#C8B49A" stroke-width="0.6" opacity="0.7" transform="rotate(-42 27.5 24)"/>
+            <ellipse cx="52.5" cy="24" rx="1.65" ry="4.5" fill="none" stroke="#C8B49A" stroke-width="0.6" opacity="0.7" transform="rotate(42 52.5 24)"/>
+            <line x1="40" y1="23" x2="40" y2="16" stroke="#C8B49A" stroke-width="0.5" opacity="0.4"/>
+            <text x="40" y="62" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="24" font-weight="300" letter-spacing="4" fill="#C8B49A" opacity="0.7">TB</text>
+          </svg>
+          <div>
+            <p class="font-serif font-semibold text-[20px] tracking-[0.07em] text-ivory leading-none">Tonya Belczyk</p>
+            <p class="font-sans font-medium text-[7.5px] tracking-[0.22em] uppercase text-sand/70 leading-none mt-[4px]">Speech-Language Pathologist</p>
+          </div>
+        </div>
+        <p class="font-sans font-light text-[13px] leading-[1.75] tracking-[0.02em] text-ivory/50 max-w-[260px]">
+          Individualized speech and language assessments and therapy for children of all ages in Oakville, Burlington, and Milton, Ontario — in-home, in-clinic, and online.
+        </p>
+        <p class="font-serif italic text-[15px] text-sand/50 mt-5">Connected. Confident. Capable.</p>
+      </div>
+
+      <!-- Navigate -->
+      <div>
+        <h4 class="font-sans font-medium text-[9px] tracking-[0.22em] uppercase text-sand mb-5 leading-none">Navigate</h4>
+        <ul class="space-y-3">
+          <li><a href="index.html"    class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50 hover:text-ivory transition-colors duration-200">Home</a></li>
+          <li><a href="about.html"    class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50 hover:text-ivory transition-colors duration-200">About</a></li>
+          <li><a href="therapy.html"  class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50 hover:text-ivory transition-colors duration-200">Therapies</a></li>
+          <li><a href="services.html" class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50 hover:text-ivory transition-colors duration-200">Services</a></li>
+          <li><a href="contact.html"  class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50 hover:text-ivory transition-colors duration-200">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Get In Touch -->
+      <div>
+        <h4 class="font-sans font-medium text-[9px] tracking-[0.22em] uppercase text-sand mb-5 leading-none">Get In Touch</h4>
+        <ul class="space-y-3">
+          <li>
+            <a href="mailto:tonya@tonyabelczyk.com" class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50 hover:text-ivory transition-colors duration-200">
+              tonya@tonyabelczyk.com
+            </a>
+          </li>
+          <li><span class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50">Oakville, Burlington &amp; Milton, Ontario</span></li>
+          <li><span class="font-sans font-light text-[13px] tracking-[0.02em] text-ivory/50">In-Home · In-Clinic · Online</span></li>
+          <li class="pt-3">
+            <button onclick="openDrawer()" class="inline-flex font-sans font-medium text-[9px] tracking-[0.18em] uppercase bg-sand text-charcoal rounded-full px-5 py-2.5 hover:bg-ivory active:scale-[0.97] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand focus-visible:ring-offset-2">
+              Book a Free Call →
+            </button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pt-8">
+      <span class="font-sans font-light text-[11px] tracking-[0.04em] text-ivory/30">
+        &copy; 2025 Tonya Belczyk, M.A., CCC-SLP. All rights reserved.
+      </span>
+      <div class="flex gap-6">
+        <a href="#" class="font-sans font-light text-[11px] tracking-[0.04em] text-ivory/30 hover:text-ivory/60 transition-colors duration-200">Privacy Policy</a>
+        <a href="#" class="font-sans font-light text-[11px] tracking-[0.04em] text-ivory/30 hover:text-ivory/60 transition-colors duration-200">Terms of Service</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ══ CONNECT DRAWER ════════════════════════════════════════════════════ -->
+<div id="drawer-overlay" onclick="closeDrawer()" aria-hidden="true"></div>
+<div id="connect-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-heading">
+  <button id="drawer-close" onclick="closeDrawer()" aria-label="Close">&#215;</button>
+  <p id="drawer-label">Let's Connect</p>
+  <h2 id="drawer-heading">I'd love to hear from you.</h2>
+  <p id="drawer-intro">Fill in the form below and I'll be in touch within 1–2 business days to schedule your free discovery call.</p>
+  <hr id="drawer-rule">
+  <form id="drawer-form" novalidate>
+    <div class="drawer-field" id="field-name">
+      <label for="d-name">Full Name</label>
+      <input type="text" id="d-name" name="name" placeholder="Your full name" autocomplete="name">
+      <span class="drawer-error">Please enter your full name.</span>
+    </div>
+    <div class="drawer-field" id="field-email">
+      <label for="d-email">Email Address</label>
+      <input type="email" id="d-email" name="email" placeholder="Your email address" autocomplete="email">
+      <span class="drawer-error" id="email-error">Please enter a valid email address.</span>
+    </div>
+    <div class="drawer-field" id="field-message">
+      <label for="d-message">Tell me about your child</label>
+      <textarea id="d-message" name="message" placeholder="Share a little about your child's age, what you've been noticing, and any questions you have. There are no wrong answers."></textarea>
+      <span class="drawer-error">Please share a little about your child.</span>
+    </div>
+    <button type="submit" id="drawer-submit">Send My Message &rarr;</button>
+  </form>
+  <div id="drawer-success">
+    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="22" cy="22" r="21" stroke="#92B0A8" stroke-width="1.5"/>
+      <path d="M13 22.5l6.5 6.5 11.5-13" stroke="#92B0A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <p>You're all set! I'll be in touch within 1–2 business&nbsp;days. I can't wait to&nbsp;connect.</p>
+  </div>
+</div>
+
+<!-- ══ SCRIPTS ═══════════════════════════════════════════════════════════ -->
+<script>
+  // Nav scroll shadow
+  const nav = document.getElementById('main-nav')
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 8), { passive: true })
+
+  // Mobile menu
+  const menuToggle = document.getElementById('menu-toggle')
+  const mobileMenu = document.getElementById('mobile-menu')
+  const bar1 = document.getElementById('bar1'), bar2 = document.getElementById('bar2'), bar3 = document.getElementById('bar3')
+  let menuOpen = false
+  menuToggle.addEventListener('click', () => {
+    menuOpen = !menuOpen
+    mobileMenu.classList.toggle('hidden', !menuOpen)
+    bar1.style.transform = menuOpen ? 'translateY(6px) rotate(45deg)' : ''
+    bar3.style.transform = menuOpen ? 'translateY(-6px) rotate(-45deg)' : ''
+    bar2.style.opacity = menuOpen ? '0' : ''
+  })
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menuOpen = false; mobileMenu.classList.add('hidden')
+    bar1.style.transform = bar3.style.transform = ''; bar2.style.opacity = ''
+  }))
+
+  // Drawer
+  window.openDrawer = function() {
+    document.getElementById('drawer-overlay').classList.add('drawer-open')
+    document.getElementById('connect-drawer').classList.add('drawer-open')
+    document.body.style.overflow = 'hidden'
+    document.getElementById('drawer-close').focus()
+  }
+  window.closeDrawer = function() {
+    document.getElementById('drawer-overlay').classList.remove('drawer-open')
+    document.getElementById('connect-drawer').classList.remove('drawer-open')
+    document.body.style.overflow = ''
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.getElementById('connect-drawer').classList.contains('drawer-open')) closeDrawer()
+  })
+
+  // Drawer form
+  function drawerSetError(id, show) { var el = document.getElementById(id); if (el) el.classList.toggle('has-error', show) }
+  document.addEventListener('DOMContentLoaded', function() {
+    var dn = document.getElementById('d-name'), de = document.getElementById('d-email'), dm = document.getElementById('d-message')
+    if (dn) dn.addEventListener('input', () => drawerSetError('field-name', false))
+    if (de) de.addEventListener('input', () => drawerSetError('field-email', false))
+    if (dm) dm.addEventListener('input', () => drawerSetError('field-message', false))
+    var form = document.getElementById('drawer-form'); if (!form) return
+    form.addEventListener('submit', function(e) {
+      e.preventDefault()
+      var name = dn.value.trim(), email = de.value.trim(), msg = dm.value.trim(), valid = true
+      var isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+      if (!name) { drawerSetError('field-name', true); valid = false }
+      if (!isEmail(email)) { drawerSetError('field-email', true); valid = false }
+      if (!msg) { drawerSetError('field-message', true); valid = false }
+      if (!valid) return
+      var btn = document.getElementById('drawer-submit'), success = document.getElementById('drawer-success')
+      btn.disabled = true; btn.textContent = 'Sending…'
+      fetch('https://formspree.io/tonya@tonyabelczyk.com',{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({name,email,message:msg,_subject:'New enquiry from '+name})}).then(r=>r.json()).then(data=>{if(data.ok){form.style.transition='opacity 300ms ease';form.style.opacity='0';setTimeout(()=>{form.style.display='none';success.style.display='block'},300)}else{btn.disabled=false;btn.textContent='Send My Message →'}}).catch(()=>{btn.disabled=false;btn.textContent='Send My Message →'})
+    })
+  })
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal')
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target) } })
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
+  revealEls.forEach(el => observer.observe(el))
+</script>
+</body>
+</html>
